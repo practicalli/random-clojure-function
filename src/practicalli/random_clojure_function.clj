@@ -8,9 +8,10 @@
   "Fully qualified function names from clojure.core"
   (vals (ns-publics 'clojure.core)))
 
-(def available-namespaces
+(def all-public-functions
   "Fully qualified function names from available"
   (mapcat #(vals (ns-publics %)) (all-ns)))
+
 
 ;; helper functions
 
@@ -39,8 +40,8 @@
   from the available namespaces"
   [& args]
   (if (seq args)
-    (println (random-function available-namespaces))))
     (println (random-function (selective-namespace-functions args)))
+    (println (random-function all-public-functions))))
 
 
 ;; REPL experiments
