@@ -1,6 +1,9 @@
 # random-clojure-function
 An application that returns a random function name and description from the Clojure standard library
 
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/practicalli/random-clojure-function)
+
+
 ## Installation
 Download from https://github.com/practicalli/random-clojure-function.
 
@@ -22,7 +25,6 @@ The application can take arguments that are names of namespaces available in the
 ```shell
 clojure -m practicalli.random-clojure-function "clojure.string" "clojure.repl"
 ```
-
 
 
 ## Deployment
