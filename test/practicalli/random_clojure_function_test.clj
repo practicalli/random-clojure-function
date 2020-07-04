@@ -1,7 +1,11 @@
 (ns practicalli.random-clojure-function-test
-  (:require [clojure.test :refer :all]
-            [practicalli.random-clojure-function :refer :all]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [practicalli.random-clojure-function :as SUT]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 1 1))))
+
+(deftest -main-test
+  (testing "Show random function from Clojure standard library"
+
+    (is (seq SUT/standard-library-functions))
+
+    (is (string? (SUT/-main)))))
