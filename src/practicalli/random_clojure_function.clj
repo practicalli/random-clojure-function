@@ -18,6 +18,10 @@
   [namespace]
   (vals (ns-publics namespace)))
 
+(defn selective-namespace-functions
+  [namespace-sequence]
+  (mapcat #(function-list (symbol %)) namespace-sequence))
+
 
 ;; logic
 
@@ -35,8 +39,8 @@
   from the available namespaces"
   [& args]
   (if (seq args)
-    (println (random-function (mapcat #(function-list (symbol %)) args)))
     (println (random-function available-namespaces))))
+    (println (random-function (selective-namespace-functions args)))
 
 
 ;; REPL experiments
