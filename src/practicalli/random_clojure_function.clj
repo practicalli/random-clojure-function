@@ -6,13 +6,18 @@
   "Fully qualified function names from clojure.core"
   (vals (ns-publics 'clojure.core)))
 
+(defn random-function
+  [function-list]
+  (let [function-details (meta (rand-nth function-list))]
+    (str (function-details :name)
+         "\n  " (function-details :arglists  )
+         "\n  " (function-details :doc) )))
 
 
 (defn -main
   "Return a function name from the Clojure Standard library"
   [& args]
-  (let [function-details (meta (rand-nth standard-library-functions))]
-    (str (function-details :name) "\n  " (function-details :doc))))
+  (println (random-function standard-library-functions)))
 
 
 ;; REPL experiments

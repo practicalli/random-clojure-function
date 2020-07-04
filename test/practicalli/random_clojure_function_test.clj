@@ -3,9 +3,7 @@
             [practicalli.random-clojure-function :as SUT]))
 
 
-(deftest -main-test
+(deftest random-function-test
   (testing "Show random function from Clojure standard library"
-
     (is (seq SUT/standard-library-functions))
-
-    (is (string? (SUT/-main)))))
+    (is (string? (SUT/random-function SUT/standard-library-functions)))))
