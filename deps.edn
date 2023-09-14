@@ -1,22 +1,54 @@
-{:paths
+{;; ------------------------------------------ 
+ ;; Source code paths
+ :paths
  ["src" "resources"]
+ ;; ------------------------------------------ 
 
+ ;; ------------------------------------------ 
+ ;; Main dependencies
  :deps
  {org.clojure/clojure {:mvn/version "1.10.1"}}
+ ;; ------------------------------------------ 
 
  :aliases
- {:test
+ {;; ------------------------------------------ 
+  ;; Run application and functions
+
+  :run/main {:main-opts ["-m" "practicalli.random-function"]}
+
+  :run/greet {:ns-default practicalli.random-function
+              :exec-fn greet
+              :exec-args {:name "Clojure"}}
+  ;; ------------------------------------------ 
+
+  ;; ------------------------------------------ 
+  ;; Testing
+  :test/env
   {:extra-paths ["test"]
    :extra-deps  {org.clojure/test.check {:mvn/version "1.0.0"}}}
 
-  :runner
-  {:extra-deps {com.cognitect/test-runner
-                {:git/url "https://github.com/cognitect-labs/test-runner"
-                 :sha     "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
-   :main-opts  ["-m" "cognitect.test-runner"
-                "-d" "test"]}
+  ;; Test runner - local and CI
+  ;; call with :watch? true to start file watcher and re-run tests on saved changes
+  :test/run
+  {:extra-paths ["test"]
+   :extra-deps {lambdaisland/kaocha {:mvn/version "1.85.1342"}}
+   :main-opts   ["-m" "kaocha.runner"]
+   :exec-fn kaocha.runner/exec-fn
+   :exec-args {:randomize? false
+               :fail-fast? true}}
+  ;; ------------------------------------------ 
 
-  :uberjar
-  {:extra-deps {seancorfield/depstar {:mvn/version "1.0.94"}}
-   :main-opts  ["-m" "hf.depstar.uberjar" "random-clojure-function.jar"
-                "-C" "-m" "practicalli.random-clojure-function"]}}}
+  ;; ------------------------------------------ 
+  ;; tools.build `build.clj` built script
+
+  :build/env {:extra-paths "."}
+
+  :build
+  {:replace-deps {io.github.clojure/tools.build
+                  {:git/tag "v0.9.4" :git/sha "76b78fe"}}
+   :ns-default build}}}
+  ;; ------------------------------------------ 
+
+
+
+
