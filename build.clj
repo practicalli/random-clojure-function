@@ -4,6 +4,24 @@
    [clojure.pprint :as pprint]))
 
 ;; ---------------------------------------------------------
+;; Build configuration
+
+(def project-config
+  "Project configuration to support all tasks"
+  (let [library-name 'practicalli/random-clojure-function
+        version (format "1.0.%s" (build-api/git-count-revs nil))]
+    {:library-name    library-name
+     :main-namespace  library-name
+     :project-version version
+     :class-directory "target/classes"
+     :project-basis   (build-api/create-basis)
+     :jar-file        (format "target/%s-%s.jar" (name library-name) version)
+     :uberjar-file    (format "target/%s-%s-standalone.jar" (name library-name) version)}))
+
+;; End of Build configuration
+;; ---------------------------------------------------------
+
+;; ---------------------------------------------------------
 ;; Build tasks
 
 (defn clean
