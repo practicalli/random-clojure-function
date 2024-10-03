@@ -8,6 +8,7 @@
   "Fully qualified function names from clojure.core"
   (vals (ns-publics 'clojure.core)))
 
+
 (def all-public-functions
   "Fully qualified function names from available"
   (mapcat #(vals (ns-publics %)) (all-ns)))
@@ -18,6 +19,7 @@
 (defn function-list
   [namespace]
   (vals (ns-publics namespace)))
+
 
 (defn selective-namespace-functions
   [namespace-sequence]
@@ -34,7 +36,6 @@
          "\n  " (function-details :doc))))
 
 
-
 (defn -main
   "Return a random function and its details
   from the available namespaces"
@@ -45,7 +46,7 @@
 
 
 ;; REPL experiments
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 
 (comment
 

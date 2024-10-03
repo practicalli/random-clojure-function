@@ -1,7 +1,8 @@
 (ns build
   (:require
-   [clojure.tools.build.api :as build-api]
-   [clojure.pprint :as pprint]))
+    [clojure.pprint :as pprint]
+    [clojure.tools.build.api :as build-api]))
+
 
 ;; ---------------------------------------------------------
 ;; Build configuration
@@ -18,6 +19,7 @@
      :jar-file        (format "target/%s-%s.jar" (name library-name) version)
      :uberjar-file    (format "target/%s-%s-standalone.jar" (name library-name) version)}))
 
+
 ;; End of Build configuration
 ;; ---------------------------------------------------------
 
@@ -31,6 +33,7 @@
   `target` is the default directory for build artefacts"
   [directory]
   (build-api/delete {:path (or (:path directory) "target")}))
+
 
 (defn jar
   "Create a build of the project, cleaning existing build assets first"
@@ -48,6 +51,7 @@
     (build-api/jar {:class-dir class-directory
                     :jar-file  jar-file})))
 
+
 (defn uberjar
   "Create an archive containing Clojure and the build of the project"
   [_]
@@ -64,6 +68,7 @@
                      :uber-file uberjar-file
                      :basis     project-basis
                      :main      main-namespace})))
+
 
 ;; End of Build tasks
 ;; ---------------------------------------------------------

@@ -1,6 +1,7 @@
 (ns practicalli.random-clojure-function-test
-  (:require [clojure.test :refer [deftest is testing]]
-            [practicalli.random-clojure-function :as SUT]))
+  (:require
+    [clojure.test :refer [deftest is testing]]
+    [practicalli.random-clojure-function :as SUT]))
 
 
 (deftest random-function-test
